@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import MessageLog from '../components/MessageLog';
+import MessageLog from '../components/MessageLog/_messageslog'
+import Messages from '../components/MessageLog'
 
 
 function Messenger () {
@@ -30,19 +31,14 @@ function Messenger () {
 
     return (
         <div>
-            {messages.map((message, index) => (
-                <div key={index}>
-                    <h5>{message}</h5>
-                    <p>new message</p>
-                </div>
-            ))}
+            <Messages messages={messages}/>
             <form onSubmit={SubmitHandler}>
-                <textarea
+                <input
                 placeholder="Chat now!"
                 onChange={handleChange}
                 name="message"
                 value={formState.message}
-                ></textarea>
+                ></input>
                 <button>Submit</button>    
             </form> 
         </div>

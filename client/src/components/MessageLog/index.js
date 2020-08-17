@@ -1,32 +1,17 @@
-import {useState, useRef, useEffect} from 'react';
-import io from 'socket.io-client';
+import React from 'react';
 
-function MessageLog() {
-    const [messages, setMessages] = useState([]);
-    const socketRef = useRef();
-
-    useEffect(() => {
-        socketRef.current = io(
-            "http://localhost:3001"
-        );
-
-        socketRef.current.on(
-            "message",
-            (message) => {
-                setMessages( messages => [...messages, message])
-            }
-        );
-
-        return () => {
-            socketRef.current.disconnect();
-        }
-    }, [])
-
-    const sendMessage = ( message ) => {
-        socketRef.current.send(message);
-    };
-
-    return { messages, sendMessage};
+function Messages({messages}) {
+    
+    return(
+        <div>
+            { messages.map((message, index) => (
+                <div key={index}>
+                    <h5 style={{ margin: 1 }}>user ???? :</h5>
+                    <p style={{ marginTop: 0, marginLeft: 10, marginBottom: 10 }}>{message}</p>
+                </div>
+            ))}
+        </div>
+    )
 }
 
-export default MessageLog;
+export default Messages;
