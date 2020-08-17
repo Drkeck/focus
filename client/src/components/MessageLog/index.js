@@ -4,6 +4,7 @@ function Messages({messages}) {
     
     return(
         <div>
+            {/* loops through and creates a element for all the messages coming in */}
             { messages.map((message, index) => (
                 <div key={index}>
                     <h5 style={{ margin: 1 }}>user ???? :</h5>
