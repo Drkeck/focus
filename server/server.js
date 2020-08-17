@@ -32,7 +32,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-io.on('connection', function(data) {
+io.on('connection', socket => {
   console.log("connection established");
 
   socket.on("message", function(data){
