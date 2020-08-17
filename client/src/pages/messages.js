@@ -1,26 +1,19 @@
 import React, {useState} from 'react';
-import io from 'socket.io-client';
+import MessageLog from '../components/MessageLog';
 
 
 function Messenger () {
     const [formState, setFormState] = useState({ message: ''})
+    const { messages, sendMessage } = MessageLog();
 
     // establish the url to the server side.
-    const socket = io('http://localhost:3001/');
-    // establish the connection
-    socket.on('connect', () => {
-        //check if connected
-        // console.log(socket);
-    });
-    socket.on("message", ( data ) => {
-        console.log(data)
-    })
+
 
     const SubmitHandler = async event => {
         // prevent the page from refreshing
         event.preventDefault();
         // send the message to the server
-        socket.send(formState.message, "/")
+        sendMessage(formState.message)
         // set message state back to empty
         setFormState({ message: ''})
     }
@@ -37,7 +30,12 @@ function Messenger () {
 
     return (
         <div>
-            {!socket.connected ? (<h5>connected</h5>) : (<h5>not connected</h5>)}
+            {messages.map((message, index) => (
+                <div key={index}>
+                    <h5>{message}</h5>
+                    <p>new message</p>
+                </div>
+            ))}
             <form onSubmit={SubmitHandler}>
                 <textarea
                 placeholder="Chat now!"

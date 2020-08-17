@@ -8,6 +8,8 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+// for some reason socket.io really wants this line of code, even if its entirely unnecessary for the rest of the server.
 var http = require('http').createServer(app);
 
 // const server = new ApolloServer({
@@ -17,6 +19,8 @@ var http = require('http').createServer(app);
 // });
 
 // server.applyMiddleware({ app });
+
+// connect socket.io to the server.
 const io = require('socket.io')(http)
 
 app.use(express.urlencoded({ extended: false }));
@@ -32,14 +36,16 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+// establish the socket.io connect so that the engine is able to pass data to all others on the server.
 io.on('connection', socket => {
 
+  // establishes what to do when the server receives a message
   socket.on("message", function(data){
+    // logs the message for debug purposes 
     console.log("Message received: ", data)
-    socket.send('hello', '/');
+    // send the message to all clients connected to the server to test if messages work.
+    io.emit("message", data)
   });
-
-  socket.on("disconnect", function(){})
 })
 
 db.once('open', () => {
