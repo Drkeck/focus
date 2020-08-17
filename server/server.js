@@ -33,10 +33,10 @@ app.get('*', (req, res) => {
 });
 
 io.on('connection', socket => {
-  console.log("connection established");
 
   socket.on("message", function(data){
     console.log("Message received: ", data)
+    socket.send('hello', '/');
   });
 
   socket.on("disconnect", function(){})
