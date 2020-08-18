@@ -1,47 +1,27 @@
-const {Model, DataTypes} = require('sequelize');
-const sequelize = require('../config/connection');
+const mongoose = require('mongoose');
 
-class Comment extends Model {}
+const CommentSchema = new Schema({
 
-Comment.init(
-    {
-        //columns will go here
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        comment_text: {
-            type: DataTypes.STRING,
-            validate: {
-                // this means the comment_text must be at least four characters long
-            len: [5]
-            }
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        },
-        post_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'post',
-                key: 'id'
-            }
-        }
+    user: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'User' 
     },
-    {
-        sequelize,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'comment'
-    }
-);
+    content: { 
+        type: String, 
+        required: true, 
+        trim: true
+    },
+    upvotes: { 
+        type: Number,
+        default: 0
+    },
+    downvotes: {
+        type: Number,
+        default: 0
+    }, 
+        timestamps: true,
+});
 
+const Comment = mongoose.model('Comment', CommentSchema);
 
 module.exports = Comment;
