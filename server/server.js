@@ -1,9 +1,9 @@
 const express = require('express');
-// const { ApolloServer } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 
-// const { typeDefs, resolvers } = require('./schemas');
-// const { authMiddleware } = require('./utils/auth');
+const { typeDefs, resolvers } = require('./schemas');
+const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
@@ -12,13 +12,13 @@ const app = express();
 // for some reason socket.io really wants this line of code, even if its entirely unnecessary for the rest of the server.
 var http = require('http').createServer(app);
 
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-//   context: authMiddleware
-// });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: authMiddleware
+});
 
-// server.applyMiddleware({ app });
+server.applyMiddleware({ app });
 
 // connect socket.io to the server.
 const io = require('socket.io')(http)
@@ -51,6 +51,6 @@ io.on('connection', socket => {
 db.once('open', () => {
   http.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
-    // console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });

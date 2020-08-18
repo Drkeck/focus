@@ -4,15 +4,19 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async (parent, args, context) => {
-            const user = await User.findById(context.user._id)
+        Me: async (parent, args, context) => {
+            const userData = await User.findById(context.user._id)
+            return userData
+        },
+        user: async (parent, { username }) => {
+            return User.findOne({ username })
         }
     },
     Mutation: {
         addUser: async (parent, args) => {
             const user = await User.create(args);
-            const toekin = signToken(user)
-            return { toekin, user }
+            const token = signToken(user)
+            return { token, user }
         },
         login: async (parent, { email, password}) => {
             const user = await User.findOne({ email });
@@ -28,3 +32,5 @@ const resolvers = {
         }
     }
 }
+
+module.exports = resolvers;
