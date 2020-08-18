@@ -16,12 +16,15 @@ const resolvers = {
         },
         login: async (parent, { email, password}) => {
             const user = await User.findOne({ email });
+            const correctPw = await User.isPasswordCorrect(password);
 
-            if (!user) {
+            if (!correctPw || !user) {
                 throw new AuthenincationError('incorrect credentials');
             }
 
-            const correctPw = await User
+            const token = signToken(user);
+
+            return { token, user };
         }
     }
 }
