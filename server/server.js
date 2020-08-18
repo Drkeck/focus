@@ -1,37 +1,29 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const path = require('path');
+const express = require('express')
+const app = express()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+const { v4: uuidV4 } = require('uuid')
 
-const { typeDefs, resolvers } = require('./schemas');
-const { authMiddleware } = require('./utils/auth');
-const db = require('./config/connection');
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
 
-const PORT = process.env.PORT || 3001;
-const app = express();
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context: authMiddleware
-});
+// app.get('/', (req, res) => {
+//   res.redirect(`/${uuidV4()}`)
+// })
 
-server.applyMiddleware({ app });
+// app.get('/:room', (req, res) => {
+//   res.render('../client/src/pages/room', { roomId: req.params.room })
+// })
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+io.on('connection', socket => {
+  socket.on('join-room', (roomId, userId) => {
+    socket.join(roomId)
+    socket.to(roomId).broadcast.emit('user-connected', userId)
 
-app.use('/images', express.static(path.join(__dirname, '../client/images')));
+    socket.on('disconnect', () => {
+      socket.to(roomId).broadcast.emit('user-disconnected', userId)
+    })
+  })
+})
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-}
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
-
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-  });
-});
+server.listen(3001)

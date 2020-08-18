@@ -1,12 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
+import Login from "./pages/Login";
 import './App.css';
+import { Router } from 'express';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Router>
+          <Route exact path="/" component={Login}/>
+        </Router>
+          
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
