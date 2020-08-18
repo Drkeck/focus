@@ -3,7 +3,7 @@ import React from 'react';
 function Messages({messages}) {
     
     return(
-        <div>
+        <div style={{ marginBottom: 25}}>
             {/* loops through and creates a element for all the messages coming in */}
             { messages.map((message, index) => (
                 <div key={index}>

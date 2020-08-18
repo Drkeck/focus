@@ -32,12 +32,16 @@ function Messenger () {
     return (
         <div>
             <Messages messages={messages}/>
-            <form onSubmit={SubmitHandler}>
+            <form 
+                onSubmit={SubmitHandler} 
+                style={{bottom: 0, position: "fixed", left: 0, width: `100%`}}
+            >
                 <input
                 placeholder="Chat now!"
                 onChange={handleChange}
                 name="message"
                 value={formState.message}
+                style={{width: '80%', marginRight: 10}}
                 ></input>
                 <button>Submit</button>    
             </form> 
