@@ -1,10 +1,27 @@
 import React from 'react';
 import Messenger from './pages/messages';
 import './App.css';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+
+const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem('User_token');
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    });
+  },
+  uri: '/graphql'
+});
 
 function App() {
   return (
-    <Messenger></Messenger>
+    <ApolloProvider client={client}>
+      <Messenger />
+    </ApolloProvider>
   );
 }
 

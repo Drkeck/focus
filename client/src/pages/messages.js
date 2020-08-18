@@ -11,12 +11,12 @@ function Messenger () {
 
 
     const SubmitHandler = async event => {
-        // prevent the page from refreshing
+        // prevent the page from refreshing.
         event.preventDefault();
         // send the message to the server
-        sendMessage(formState.message)
+        sendMessage(formState.message);
         // set message state back to empty
-        setFormState({ message: ''})
+        setFormState({ message: ''});
     }
 
     const handleChange = event => {
