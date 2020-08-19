@@ -37,14 +37,20 @@ app.get('*', (req, res) => {
 });
 
 // establish the socket.io connect so that the engine is able to pass data to all others on the server.
+
 io.on('connection', socket => {
+
+  socket.on('sendNickname', function(username) {
+    socket.username = username
+  });
 
   // establishes what to do when the server receives a message
   socket.on("message", function(data){
-    // logs the message for debug purposes 
-    console.log("Message received: ", data)
     // send the message to all clients connected to the server to test if messages work.
-    io.emit("message", data)
+    io.emit("message", {
+      username: socket.username,
+      message: data
+    })
   });
 })
 

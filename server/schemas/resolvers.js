@@ -8,6 +8,9 @@ const resolvers = {
             const userData = await User.findById(context.user._id)
             return userData
         },
+        users: async (parent, args) => {
+            return User.find()
+        },
         user: async (parent, { username }) => {
             return User.findOne({ username })
         }
@@ -18,9 +21,9 @@ const resolvers = {
             const token = signToken(user)
             return { token, user }
         },
-        login: async (parent, { email, password}) => {
-            const user = await User.findOne({ email });
-            const correctPw = await User.isPasswordCorrect(password);
+        login: async (parent, { username, password}) => {
+            const user = await User.findOne({ username });
+            const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw || !user) {
                 throw new AuthenincationError('incorrect credentials');
