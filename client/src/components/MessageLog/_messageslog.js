@@ -25,7 +25,8 @@ function MessageLog() {
     }, [])
 
     // sending messages to the server.
-    const sendMessage = ( message ) => {
+    const sendMessage = (username, message) => {
+        console.log(username, message)
         socketRef.current.send(message);
     };
 

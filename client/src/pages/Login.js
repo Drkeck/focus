@@ -36,7 +36,7 @@ function Login() {
 
         //clear form
         setFormState({
-            email: '',
+            username: '',
             password: '',
         });
     };

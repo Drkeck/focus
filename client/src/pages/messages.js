@@ -1,9 +1,15 @@
 import React, {useState} from 'react';
 import MessageLog from '../components/MessageLog/_messageslog'
 import Messages from '../components/MessageLog'
+import { useQuery } from '@apollo/react-hooks';
+import { ME } from '../utils/queries'
 
 
 function Messenger () {
+    const { loading, data} = useQuery(ME)
+    const user = data?.Me || {};
+    console.log(user.username)
+
     const [formState, setFormState] = useState({ message: ''})
     const { messages, sendMessage } = MessageLog();
 
@@ -14,7 +20,7 @@ function Messenger () {
         // prevent the page from refreshing.
         event.preventDefault();
         // send the message to the server
-        sendMessage(formState.message);
+        sendMessage(user.username, formState.message);
         // set message state back to empty
         setFormState({ message: ''});
     }
@@ -43,7 +49,7 @@ function Messenger () {
                 value={formState.message}
                 style={{width: '80%', marginRight: 10}}
                 ></input>
-                <button>Submit</button>    
+                <button style={{ paddingLeft: 50, paddingRight: 50}}>Submit</button>    
             </form> 
         </div>
     )
