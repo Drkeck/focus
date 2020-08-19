@@ -9,7 +9,7 @@ const resolvers = {
             return userData
         },
         users: async (parent, args) => {
-            return User.find()
+            return User.find().populate('friends')
         },
         user: async (parent, { username }) => {
             return User.findOne({ username })
@@ -33,11 +33,11 @@ const resolvers = {
 
             return { token, user };
         },
-        addFriend: async (parent, { username }, context) => {
+        addFriend: async (parent, { userId }, context) => {
             if (context.user) {
                 const updateUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { friends: username } },
+                    { $addToSet: { friends: userId } },
                     { new: true }
                 ).populate('friends')
                 return updateUser;
