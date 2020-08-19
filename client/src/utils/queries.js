@@ -6,6 +6,10 @@ export const ME = gql`
             _id
             username
             email
+            friends {
+                username
+                _id
+            }
         }
     }
 `;
