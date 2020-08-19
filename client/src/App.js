@@ -1,10 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Messenger from './pages/messages';
-import Login from './pages/Login';
 import './App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
+
+//components
+
+import Messenger from './pages/messages';
+import Login from './pages/Login';
+
+ 
+
 
 const client = new ApolloClient({
   request: operation => {
@@ -21,14 +27,28 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    
     <ApolloProvider client={client}>
+      
       <Router>
+     
         <Switch>
+          
           <Route exact path='/' component={Login} />
           <Route exact path='/messages' component={Messenger} />
         </Switch>
+        
+        
       </Router>
+      
     </ApolloProvider>
+    
+
+  
+    
+    
+    
+    
   );
 }
 
