@@ -1,18 +1,45 @@
 import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import Header from './components/Header';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// apollo provider 
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+
+// components and pages
+import Navbar from './components/Navbar';
+
+const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem('id_token');
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    })
+  },
+  uri: '/graphql'
+});
+
 
 function App() {
   return (
-    <>
-    <div>
-        <Header></Header> 
-    </div>
-    
-    </>
-  )
-
+    <ApolloProvider client={client}>
+      <Router>
+        <>
+          <Navbar />
+          <Switch>
+            {/* <Route exact path='/' component={Homepage} /> */}
+            {/* <Route exact path='/region' component={RegionSearch} />
+            <Route exact path='/saved' component={SavedSearch} />  */}
+            <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+          </Switch>
+          {/* <Footer/> */}
+        </>
+      </Router>
+    </ApolloProvider>
+  );
 }
 
 export default App;
