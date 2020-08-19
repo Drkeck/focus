@@ -32,6 +32,18 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+        addFriend: async (parent, { username }, context) => {
+            if (context.user) {
+                const updateUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { friends: username } },
+                    { new: true }
+                ).populate('friends')
+                return updateUser;
+            }
+
+            throw new AuthenincationError('You need to be logged in');
         }
     }
 }
