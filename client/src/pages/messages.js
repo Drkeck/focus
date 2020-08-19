@@ -9,7 +9,7 @@ import FriendsList from '../components/friendsList';
 function Messenger () {
     const { loading, data} = useQuery(ME)
     const user = data?.Me || {};
-    console.log(user)
+    // console.log(user.friends)
 
     const [formState, setFormState] = useState({ message: ''})
     const { messages, sendMessage } = MessageLog();
@@ -38,11 +38,7 @@ function Messenger () {
 
     return (
         <div>
-            { loading ? <h5>Loading...</h5> : user.friends.map((friend, index) => (
-                        <div key={index}>
-                            <FriendsList friends={friend} />
-                        </div>
-            ))}
+            <FriendsList />
             <Messages messages={messages}/>
             <form 
                 onSubmit={SubmitHandler} 
