@@ -10,7 +10,10 @@ import Messenger from './pages/messages';
 import Login from './pages/LoginForm';
 import Signup from './pages/SignupForm';
 import Navbar from './components/Navbar';
-
+import Homepage from './pages/Homepage';
+import Header from './components/Header';
+import Main from './components/Main';
+// import Navigation from './components/Navigation';
 
 
 const client = new ApolloClient({
@@ -33,11 +36,12 @@ function App() {
       
       <Router>
       <>
-     
-      <Navbar />
+     <Header></Header>
+     <Navbar></Navbar>
+     <Main></Main>
           <Switch>
             
-            <Route render={() => <h4 className='display-2'>Welcome to Focus!</h4>} />
+          <Route exact path='/' component={Homepage} />
             <Route exact path='/LoginForm' component={Login} />
             <Route exact path='/SignupForm' component={Signup} />
           <Route exact path='/messages' component={Messenger} />

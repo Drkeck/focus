@@ -1,0 +1,56 @@
+.header {
+    height: 15.5rem;
+    box-shadow: 0 2px 4px 0 rgab(0,0,0,.1);
+    background-color: rgb(7,7,7);
+}
+
+.wrap {
+   padding: 3rem 0rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   
+
+    .logo {
+        width: 13.0rem;
+        padding: 1.3rem;
+
+        img {
+            display: block;
+            width: 100%;
+            margin: 0em;
+        }
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    
+
+    li {
+        list-style-type: none;
+        flex: 1;
+        
+        a {
+            color: rgb(211, 65, 65);
+        }
+    }
+
+    a {
+        font-size: 1.8rem;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    
+}

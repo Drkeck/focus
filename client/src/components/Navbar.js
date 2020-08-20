@@ -13,17 +13,26 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='danger' variant='dark' expand='lg'>
+      <Navbar>
         <Container fluid>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
+            <Nav variant="tabs" defaultActiveKey="/home">
+  <Nav.Item>
+    <Nav.Link href="./pages/Homepage">Home</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="link-1">Contact</Nav.Link>
+  </Nav.Item>
+</Nav>
               {/* <Nav.Link as={Link} to='/'>
                 Placeholder
               </Nav.Link> */}
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
+                
                   <Nav.Link as={Link} to='/saved'>
                     Saved Searches
                   </Nav.Link>
@@ -31,11 +40,21 @@ const AppNavbar = () => {
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                
               )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+
+
+
+
+
+
+
+      
       {/* set modal data up */}
       <Modal
         size='lg'
