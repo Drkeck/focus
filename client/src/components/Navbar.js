@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../pages/SignupForm';
 import LoginForm from '../pages/LoginForm';
+import VideoForm from '../pages/VideoForm';
 import Auth from '../utils/auth';
 
 
@@ -37,6 +38,8 @@ const AppNavbar = () => {
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
                 
               )}
+              <Nav.Link onClick={() => setShowModal(true)}>Video Call</Nav.Link>
+              <Nav.Link onClick={() => setShowModal(true)}>Chat</Nav.Link>
               
             </Nav>
           </Navbar.Collapse>
@@ -74,6 +77,8 @@ const AppNavbar = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
+
+      
       </Container>
     </>
   );
