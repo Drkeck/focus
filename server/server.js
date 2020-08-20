@@ -7,7 +7,8 @@ const { v4: uuidV4 } = require('uuid')
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
-app.get('/', (req, res) => {
+app.get('/create-room', (req, res) => {
+  console.log("does this work")
   res.redirect(`/${uuidV4()}`)
 })
 
@@ -26,4 +27,4 @@ io.on('connection', socket => {
   })
 })
 
-server.listen(3001)
+server.listen(3000)
