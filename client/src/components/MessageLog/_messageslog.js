@@ -1,9 +1,17 @@
-import {useState, useRef, useEffect} from 'react';
+import { useRef, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { UPDATE_MESSAGES } from '../../utils/actions'
 import io from 'socket.io-client';
 
 function MessageLog() {
     // gets and stores messages from the server
-    const [messages, setMessages] = useState([]);
+    // const [messages, setMessages] = useState([]);
+    const messages = useSelector((state) => {
+        return state.messages
+    })
+
+    const dispatch = useDispatch();
+
     const socketRef = useRef();
 
     // establishes the server connection, and deals with the messages beng received.
@@ -15,7 +23,11 @@ function MessageLog() {
         socketRef.current.on(
             "message",
             (message) => {
-                setMessages( messages => [...messages, message])
+                console.log(message)
+                dispatch({
+                    type: UPDATE_MESSAGES,
+                    messages: message
+                })
             }
         );
 
@@ -26,8 +38,9 @@ function MessageLog() {
 
     // sending messages to the server.
     const sendMessage = (you, message, username) => {
-        console.log(username, message);
+        console.log(username, message, you);
         socketRef.current.emit('sendNickname', you);
+        socketRef.current.send(message)
         socketRef.current.emit("DM", {
             to : username,
             message: message

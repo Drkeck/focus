@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDispatch} from 'react-redux';
 import { useQuery } from '@apollo/react-hooks';
 import { ME } from '../../utils/queries';
+
 
 function FriendsList() {
     const { data, loading } = useQuery(ME)
     const friends = data?.Me?.friends || [{}]
+
+    const dispatch = useDispatch();
     
     function handleChange(event) {
         event.persist();

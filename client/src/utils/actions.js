@@ -1,5 +1,6 @@
 export const ADD_MESSAGES = "ADD_MESSAGE";
 export const UPDATE_MESSAGES = "UPDATE_MESSAGES";
+export const REMOVE_MESSAGES = "REMOVE_MESSAGES";
 export const FOCUSED_USER = "FOCUS_USER";
 export const UPDATE_FOCUS = "UPDATE_FOCUS";
 export const REMOVE_FOCUS = "REMOVER_FOCUS";

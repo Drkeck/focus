@@ -7,8 +7,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Messenger from './pages/messages';
 import Login from './pages/Login';
+import reducer from './utils/reducers';
 
-// const focus = createStore()
+const focus = createStore(reducer)
 
 const client = new ApolloClient({
   request: operation => {
@@ -27,10 +28,12 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Switch>
-          <Route exact path='/' component={Login} />
-          <Route exact path='/messages' component={Messenger} />
-        </Switch>
+        <Provider store={focus}>
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route exact path='/messages' component={Messenger} />
+          </Switch>
+        </Provider>
       </Router>
     </ApolloProvider>
   );

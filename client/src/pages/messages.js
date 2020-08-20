@@ -21,7 +21,7 @@ function Messenger () {
         // prevent the page from refreshing.
         event.preventDefault();
         // send the message to the server
-        sendMessage(user?.username, formState.message);
+        sendMessage(user?.username, formState.message, "test");
         // set message state back to empty
         setFormState({ message: ''});
     }
