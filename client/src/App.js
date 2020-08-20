@@ -7,9 +7,10 @@ import ApolloClient from 'apollo-boost';
 //components
 
 import Messenger from './pages/messages';
-import Login from './pages/Login';
+import Login from './pages/LoginForm';
+import Signup from './pages/SignupForm';
+import Navbar from './components/Navbar';
 
- 
 
 
 const client = new ApolloClient({
@@ -31,12 +32,22 @@ function App() {
     <ApolloProvider client={client}>
       
       <Router>
+      <>
      
-        <Switch>
-          
-          <Route exact path='/' component={Login} />
+      <Navbar />
+          <Switch>
+            
+            <Route render={() => <h4 className='display-2'>Welcome to Focus!</h4>} />
+            <Route exact path='/LoginForm' component={Login} />
+            <Route exact path='/SignupForm' component={Signup} />
           <Route exact path='/messages' component={Messenger} />
-        </Switch>
+        
+          </Switch>
+          
+        </>
+        
+          
+          
         
         
       </Router>
