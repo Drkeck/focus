@@ -9,7 +9,6 @@ function MessageLog() {
     // gets and stores messages from the server
     const {data, loading} = useQuery(ME);
     const user = data?.Me || {}
-    console.log(user)
     const {focus, messages} = useSelector((state) => {
         return state
     })
