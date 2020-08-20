@@ -10,13 +10,15 @@ import Auth from '../utils/auth';
 
 const AppNavbar = () => {
   // set modal display state
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal, showVideoModal, setShowVideoModal] = useState(false);
 
   return (
     <>
     <Container fluid>
       <Navbar bg='danger' className="top-nav" variant='dark' expand='lg'>
-      <Navbar.Brand className="title-nav">Focus</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand className="title-nav">Focus</Navbar.Brand>
+        </Link>
         <Container fluid>
           
           <Navbar.Toggle aria-controls='navbar' />
@@ -62,6 +64,9 @@ const AppNavbar = () => {
                 <Nav.Item>
                   <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
                 </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='video-call'>Video Call</Nav.Link>
+                </Nav.Item>
               </Nav>
             </Modal.Title>
           </Modal.Header>
@@ -73,10 +78,43 @@ const AppNavbar = () => {
               <Tab.Pane eventKey='signup'>
                 <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
+              <Tab.Pane eventKey='video-call'>
+                <VideoForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
       </Modal>
+
+
+      
+
+      {/* <Modal
+        size='lg'
+        show={showVideoModal}
+        onHide={() => setShowVideoModal(false)}
+        aria-labelledby='video-modal'>
+        tab container to do either signup or login component
+        <Tab.Container defaultActiveKey='video'>
+          <Modal.Header closeButton>
+            <Modal.Title id='video-modal'>
+              <Nav variant='pills'>
+                <Nav.Item>
+                  <Nav.Link eventKey='video'>Video</Nav.Link>
+                </Nav.Item>
+          
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='video'>
+                <VideoForm handleModalClose={() => setShowVideoModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal> */}
 
       
       </Container>

@@ -270,6 +270,16 @@
     right: 0;
     transform: translateX(0);
   }
+
+  .join-video-container {
+    margin-top: 20%;
+    align-items: center;
+  }
+
+  .create {
+    margin-top: 20px;
+    margin-left: 35%;
+  }
   
   .container.right-panel-active .overlay-right {
     transform: translateX(20%);

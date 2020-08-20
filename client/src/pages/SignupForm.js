@@ -16,8 +16,8 @@ function Signup(props) {
         firstName: formState.firstName, lastName: formState.lastName
       }
     });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
+    // const token = mutationResponse.data.addUser.token;
+    // Auth.login(token);
   };
 
   const handleChange = event => {
