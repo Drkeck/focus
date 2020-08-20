@@ -1,28 +1,19 @@
 import React, {useState} from 'react';
 import MessageLog from '../components/MessageLog/_messageslog'
 import Messages from '../components/MessageLog'
-import { useQuery } from '@apollo/react-hooks';
-import { ME } from '../utils/queries';
-import { useSelector } from 'react-redux'
 import FriendsList from '../components/friendsList';
 
 
 function Messenger () {
-    const { loading, data} = useQuery(ME);
-    const user = data?.Me || {};
-    const focus = useSelector((state) => {
-        return state.focus
-    });
     const [formState, setFormState] = useState({ message: ''});
-    const { messages, sendMessage } = MessageLog();
+    const { sendMessage } = MessageLog();
 
-    console.log(focus)
 
     const SubmitHandler = async event => {
         // prevent the page from refreshing.
         event.preventDefault();
         // send the message to the server
-        sendMessage(user?.username, formState.message, focus);
+        sendMessage(formState.message);
         // set message state back to empty
         setFormState({ message: ''});
     }

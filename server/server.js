@@ -42,6 +42,7 @@ var users = {}
 io.on('connection', socket => {
 
   socket.on('sendNickname', function(username) {
+    console.log(username)
     socket.username = username;
     users[username] = socket;
   });
@@ -56,7 +57,7 @@ io.on('connection', socket => {
   });
 
   socket.on('DM', function(data){
-    console.log(data);
+    console.log(data, socket.username);
     const to = data.to, message = data.message;
     
     if (users.hasOwnProperty(to)) {

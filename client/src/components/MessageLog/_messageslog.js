@@ -1,11 +1,15 @@
 import { useRef, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useQuery } from '@apollo/react-hooks'
+import { ME } from '../../utils/queries';
 import { UPDATE_MESSAGES } from '../../utils/actions'
 import io from 'socket.io-client';
 
 function MessageLog() {
     // gets and stores messages from the server
-    // const [messages, setMessages] = useState([]);
+    const {data, loading} = useQuery(ME);
+    const user = data?.Me || {}
+    console.log(user)
     const {focus, messages} = useSelector((state) => {
         return state
     })
@@ -34,10 +38,13 @@ function MessageLog() {
         }
     }, [])
 
+    if(!loading) {
+        socketRef.current.emit('sendNickname', user.username)
+    }
+
     // sending messages to the server.
-    const sendMessage = (you, message, username) => {
-        console.log(username, message, you);
-        socketRef.current.emit('sendNickname', you);
+    const sendMessage = ( message) => {
+        console.log(message);
         // socketRef.current.send(message)
         socketRef.current.emit("DM", {
             to : focus,
