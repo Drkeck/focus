@@ -1,30 +1,65 @@
 import React from 'react';
-import logo from './logo.svg';
-import Login1 from './components/Login1'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
-import { Router } from 'express';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+
+//components
+
+import Messenger from './pages/messages';
+import Login from './pages/LoginForm';
+import Signup from './pages/SignupForm';
+import Navbar from './components/Navbar';
+
+
+
+const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem('User_token');
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    });
+  },
+  uri: '/graphql'
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Login></Login>
+    
+    <ApolloProvider client={client}>
+      
+      <Router>
+      <>
+     
+      <Navbar />
+          <Switch>
+            
+            <Route render={() => <h4 className='display-2'>Welcome to Focus!</h4>} />
+            <Route exact path='/LoginForm' component={Login} />
+            <Route exact path='/SignupForm' component={Signup} />
+          <Route exact path='/messages' component={Messenger} />
+        
+          </Switch>
           
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        </>
+        
+          
+          
+        
+        
+      </Router>
+      
+    </ApolloProvider>
+    
 
+  
+    
+    
+    
+    
   );
 }
 
