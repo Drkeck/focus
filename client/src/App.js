@@ -11,8 +11,6 @@ import Login from './pages/LoginForm';
 import Signup from './pages/SignupForm';
 import Navbar from './components/Navbar';
 
-
-
 const client = new ApolloClient({
   request: operation => {
     const token = localStorage.getItem('User_token');
