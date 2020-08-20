@@ -1,5 +1,6 @@
 import React from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { FOCUSED_USER } from '../../utils/actions'
 import { useQuery } from '@apollo/react-hooks';
 import { ME } from '../../utils/queries';
 
@@ -14,6 +15,10 @@ function FriendsList() {
         event.persist();
         const {textContent} = event.target;
         console.log(textContent)
+        dispatch({
+            type: FOCUSED_USER,
+            focus: textContent
+        })
     }
     return (
         <div>

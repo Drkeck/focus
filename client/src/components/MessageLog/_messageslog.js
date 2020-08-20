@@ -6,8 +6,8 @@ import io from 'socket.io-client';
 function MessageLog() {
     // gets and stores messages from the server
     // const [messages, setMessages] = useState([]);
-    const messages = useSelector((state) => {
-        return state.messages
+    const {focus, messages} = useSelector((state) => {
+        return state
     })
 
     const dispatch = useDispatch();
@@ -21,12 +21,10 @@ function MessageLog() {
         );
 
         socketRef.current.on(
-            "message",
-            (message) => {
-                console.log(message)
+            "direct_message", function(data) {
                 dispatch({
                     type: UPDATE_MESSAGES,
-                    messages: message
+                    messages: data
                 })
             }
         );
@@ -40,9 +38,9 @@ function MessageLog() {
     const sendMessage = (you, message, username) => {
         console.log(username, message, you);
         socketRef.current.emit('sendNickname', you);
-        socketRef.current.send(message)
+        // socketRef.current.send(message)
         socketRef.current.emit("DM", {
-            to : username,
+            to : focus,
             message: message
         });
     };

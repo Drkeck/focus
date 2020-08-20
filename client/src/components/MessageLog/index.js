@@ -1,7 +1,10 @@
 import React from 'react';
+import {useSelector} from 'react-redux'
 
-function Messages({messages}) {
-
+function Messages() {
+    const messages = useSelector(state => {
+        return state.messages
+    })
     return(
         <div style={{ marginBottom: 25}}>
             {/* loops through and creates a element for all the messages coming in */}

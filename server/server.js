@@ -57,6 +57,21 @@ io.on('connection', socket => {
 
   socket.on('DM', function(data){
     console.log(data);
+    const to = data.to, message = data.message;
+    
+    if (users.hasOwnProperty(to)) {
+      users[to].emit('direct_message', {
+        // senders username
+        username : socket.username,
+        // senders message
+        message: message
+      });
+      users[socket.username].emit('direct_message', {
+        username : socket.username,
+        message: message
+      });
+    }
+
   })
 })
 

@@ -2,26 +2,27 @@ import React, {useState} from 'react';
 import MessageLog from '../components/MessageLog/_messageslog'
 import Messages from '../components/MessageLog'
 import { useQuery } from '@apollo/react-hooks';
-import { ME } from '../utils/queries'
+import { ME } from '../utils/queries';
+import { useSelector } from 'react-redux'
 import FriendsList from '../components/friendsList';
 
 
 function Messenger () {
-    const { loading, data} = useQuery(ME)
+    const { loading, data} = useQuery(ME);
     const user = data?.Me || {};
-    // console.log(user.friends)
-
-    const [formState, setFormState] = useState({ message: ''})
+    const focus = useSelector((state) => {
+        return state.focus
+    });
+    const [formState, setFormState] = useState({ message: ''});
     const { messages, sendMessage } = MessageLog();
 
-    // establish the url to the server side.
-
+    console.log(focus)
 
     const SubmitHandler = async event => {
         // prevent the page from refreshing.
         event.preventDefault();
         // send the message to the server
-        sendMessage(user?.username, formState.message, "test");
+        sendMessage(user?.username, formState.message, focus);
         // set message state back to empty
         setFormState({ message: ''});
     }
@@ -39,7 +40,7 @@ function Messenger () {
     return (
         <div>
             <FriendsList />
-            <Messages messages={messages}/>
+            <Messages />
             <form 
                 onSubmit={SubmitHandler} 
                 style={{bottom: 0, position: "fixed", left: 0, width: `100%`}}
