@@ -1,10 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Messenger from './pages/messages';
-import Login from './pages/Login';
 import './App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import Messenger from './pages/messages';
+import Login from './pages/Login';
+
+// const focus = createStore()
 
 const client = new ApolloClient({
   request: operation => {
