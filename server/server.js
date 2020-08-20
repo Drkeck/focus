@@ -37,11 +37,13 @@ app.get('*', (req, res) => {
 });
 
 // establish the socket.io connect so that the engine is able to pass data to all others on the server.
+var users = {}
 
 io.on('connection', socket => {
 
   socket.on('sendNickname', function(username) {
-    socket.username = username
+    socket.username = username;
+    users[username] = socket;
   });
 
   // establishes what to do when the server receives a message
@@ -52,6 +54,10 @@ io.on('connection', socket => {
       message: data
     })
   });
+
+  socket.on('DM', function(data){
+    console.log(data);
+  })
 })
 
 db.once('open', () => {

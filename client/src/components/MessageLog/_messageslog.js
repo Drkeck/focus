@@ -25,10 +25,13 @@ function MessageLog() {
     }, [])
 
     // sending messages to the server.
-    const sendMessage = (username, message) => {
+    const sendMessage = (you, message, username) => {
         console.log(username, message);
-        socketRef.current.emit('sendNickname', username);
-        socketRef.current.send(message);
+        socketRef.current.emit('sendNickname', you);
+        socketRef.current.emit("DM", {
+            to : username,
+            message: message
+        });
     };
 
     return { messages, sendMessage};

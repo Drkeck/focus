@@ -5,12 +5,17 @@ import { ME } from '../../utils/queries';
 function FriendsList() {
     const { data, loading } = useQuery(ME)
     const friends = data?.Me?.friends || [{}]
+    
+    function handleChange(event) {
+        event.persist();
+        const {textContent} = event.target;
+        console.log(textContent)
+    }
     return (
         <div>
             {friends.map((frnd, index) => (
-            <div key={index}>
-                <h5>{frnd.username}</h5>
-                <p>{frnd._id}</p>
+            <div key={index} onClick={handleChange}>
+                <h5 value={frnd.username}>{frnd.username}</h5>
             </div>
             ))}
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Messages({messages}) {
-    
+
     return(
         <div style={{ marginBottom: 25}}>
             {/* loops through and creates a element for all the messages coming in */}
