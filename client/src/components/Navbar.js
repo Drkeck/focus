@@ -13,11 +13,15 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='danger' variant='dark' expand='lg'>
+    <Container fluid>
+      <Navbar bg='danger' className="top-nav" variant='dark' expand='lg'>
+      <Navbar.Brand className="title-nav">Focus</Navbar.Brand>
         <Container fluid>
+          
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
+            
               {/* <Nav.Link as={Link} to='/'>
                 Placeholder
               </Nav.Link> */}
@@ -31,7 +35,9 @@ const AppNavbar = () => {
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                
               )}
+              
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -68,6 +74,7 @@ const AppNavbar = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
+      </Container>
     </>
   );
 };

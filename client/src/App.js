@@ -4,6 +4,8 @@ import './App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 
+import coverImg from './assets/videochat.jpg';
+
 //components
 
 import Messenger from './pages/messages';
@@ -35,7 +37,13 @@ function App() {
       <Navbar />
           <Switch>
             
-            <Route render={() => <h4 className='display-2'>Welcome to Focus!</h4>} />
+            <Route render={() =>
+               <div className="img-container">
+                 <img src={coverImg} alt="People videochatting" className="cover-img"/>
+                 <div className="centered-text">Welcome To Focus</div>
+               </div>
+              } 
+            />
             <Route exact path='/LoginForm' component={Login} />
             <Route exact path='/SignupForm' component={Signup} />
           <Route exact path='/messages' component={Messenger} />
