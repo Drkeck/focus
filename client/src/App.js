@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import Login from "./pages/Login";
+import Login1 from './components/Login1'
 import './App.css';
 import { Router } from 'express';
 
@@ -9,9 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Router>
-          <Route exact path="/" component={Login}/>
-        </Router>
+        <Login></Login>
           
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -26,6 +24,7 @@ function App() {
         </a>
       </header>
     </div>
+
   );
 }
 
