@@ -18,6 +18,25 @@ app.get('/:room', (req, res) => {
 
 io.on('connection', socket => {
   socket.on('join-room', (roomId, userId) => {
+    /*
+    if (!person[socket.id]) {
+      person[socket.id] = socket.id;
+    }
+    socket.emit("yourID", socket.id);
+    io.sockets.emit("allUsers", person);
+    socket.on("disconnect", () => {
+      delete person[socket.id];
+    });
+    socket.on("callUser", (data) => {
+      io.to(data.userToCall).emit("hey", {
+        signal: data.signalData,
+        from: data.from,
+      });
+    });
+    socket.on("acceptCall", (data) => {
+      io.to(data.to).emit("callAccepted", data.signal);
+    });
+    */
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId)
 
@@ -26,5 +45,4 @@ io.on('connection', socket => {
     })
   })
 })
-
 server.listen(3000)
