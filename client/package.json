@@ -1,31 +1,49 @@
 {
   "name": "client",
+  "proxy": "http://localhost:3001",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+<<<<<<< HEAD
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+=======
+>>>>>>> feature/DirectMsg
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "apollo-boost": "^0.4.9",
+<<<<<<< HEAD
     "auth": "0.0.9",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.2",
     "graphql": "^15.3.0",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.10.0",
+=======
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
+    "jwt-decode": "^2.2.0",
+>>>>>>> feature/DirectMsg
     "react": "^16.13.1",
     "react-apollo": "^3.1.5",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-router-dom": "^5.2.0",
     "react-script-tag": "^1.1.2",
     "react-scripts": "3.4.3",
     "simple-peer": "^9.7.2",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.1.1"
+=======
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
+    "socket.io-client": "^2.3.0"
+>>>>>>> feature/DirectMsg
   },
   "scripts": {
     "start": "react-scripts start",

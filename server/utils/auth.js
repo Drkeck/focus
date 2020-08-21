@@ -15,7 +15,7 @@ module.exports = {
         .pop()
         .trim();
     }
-    console.log("token", token)
+    // console.log("token", token)
     if (!token) {
       return req;
     }
@@ -24,7 +24,7 @@ module.exports = {
       req.user = data;
     }
     catch {
-      console.log('Invalid token');
+      // console.log('Invalid token');
     }
     return req;
   },

@@ -1,27 +1,19 @@
 import React, {useState} from 'react';
 import MessageLog from '../components/MessageLog/_messageslog'
 import Messages from '../components/MessageLog'
-import { useQuery } from '@apollo/react-hooks';
-import { ME } from '../utils/queries'
 import FriendsList from '../components/friendsList';
 
 
 function Messenger () {
-    const { loading, data} = useQuery(ME)
-    const user = data?.Me || {};
-    console.log(user)
-
-    const [formState, setFormState] = useState({ message: ''})
-    const { messages, sendMessage } = MessageLog();
-
-    // establish the url to the server side.
+    const [formState, setFormState] = useState({ message: ''});
+    const { sendMessage } = MessageLog();
 
 
     const SubmitHandler = async event => {
         // prevent the page from refreshing.
         event.preventDefault();
         // send the message to the server
-        sendMessage(user?.username, formState.message);
+        sendMessage(formState.message);
         // set message state back to empty
         setFormState({ message: ''});
     }
@@ -38,12 +30,8 @@ function Messenger () {
 
     return (
         <div>
-            { loading ? <h5>Loading...</h5> : user.friends.map((friend, index) => (
-                        <div key={index}>
-                            <FriendsList friends={friend} />
-                        </div>
-            ))}
-            <Messages messages={messages}/>
+            <FriendsList />
+            <Messages />
             <form 
                 onSubmit={SubmitHandler} 
                 style={{bottom: 0, position: "fixed", left: 0, width: `100%`}}
@@ -52,6 +40,7 @@ function Messenger () {
                 placeholder="Chat now!"
                 onChange={handleChange}
                 name="message"
+                autoComplete="off"
                 value={formState.message}
                 style={{width: '80%', marginRight: 10}}
                 ></input>

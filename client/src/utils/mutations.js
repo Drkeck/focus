@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
       token
       user {
         _id
@@ -10,32 +10,27 @@ export const LOGIN = gql`
     }
   }
 `;
-
-
-export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
-        _id
-      name
-      description
-      price
-      quantity
-      category {
-        name
-      } 
-      }
-    }
-  }
-`;
-
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+mutation addUser ($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password){
       token
-      user {
+      user{
+        _id
+        username
+        email
+      }
+    }
+  }
+`;
+
+export const ADD_FRIEND = gql`
+mutation addFriend($userId: ID!) {
+    addFriend(userId: $userId) {
+      username
+      _id
+      friends {
+        username
         _id
       }
     }

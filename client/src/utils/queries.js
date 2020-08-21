@@ -1,16 +1,6 @@
 // page for queries
 import gql from 'graphql-tag';
 
-// queries for logged in users
-export const GET_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
-      }
-    }
-`;
 export const ME = gql`
     query Me {
         Me {
@@ -21,6 +11,14 @@ export const ME = gql`
                 username
                 _id
             }
+        }
+    }
+`;
+
+export const User = gql`
+    query user {
+        user {
+            username
         }
     }
 `;

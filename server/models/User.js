@@ -6,21 +6,25 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     username: {
         type: String,
-        requred: true,
+        required: true,
         trim: true
     },
-
-
     email: {
         type: String,
-        requred: true,
+        required: true,
         trim: true
     },
     password: {
         type: String,
-        requred: true,
-        trim: true
+        required: true,
+        minlength: 5
     },
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        }
+    ],
 });
 
 userSchema.pre('save', async function(next) {
@@ -32,10 +36,10 @@ userSchema.pre('save', async function(next) {
     next();
 })
 
-userSchema.method.isPasswordCorrect = async function (password) {
+userSchema.methods.isCorrectPassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
 
-const User = mongoosse.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
