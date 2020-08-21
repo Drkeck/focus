@@ -8,10 +8,10 @@ import io from 'socket.io-client';
 function MessageLog() {
     // gets and stores messages from the server
     const {data, loading} = useQuery(ME);
-    const user = data?.Me || {}
+    const user = data?.Me || {};
     const {focus, messages} = useSelector((state) => {
         return state
-    })
+    });
 
     const dispatch = useDispatch();
 

@@ -40,6 +40,7 @@ function Messenger () {
                 placeholder="Chat now!"
                 onChange={handleChange}
                 name="message"
+                autoComplete="off"
                 value={formState.message}
                 style={{width: '80%', marginRight: 10}}
                 ></input>

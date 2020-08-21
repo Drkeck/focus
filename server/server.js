@@ -67,6 +67,7 @@ io.on('connection', socket => {
         message: message
       });
       users[socket.username].emit('direct_message', {
+        to: to,
         username : socket.username,
         message: message
       });
