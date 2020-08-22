@@ -1,11 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { FOCUSED_USER } from '../../utils/actions'
 import { useQuery } from '@apollo/react-hooks';
 import { ME } from '../../utils/queries';
 
 
 function FriendsList() {
+    const focus = useSelector(state => {
+        return state.focus
+    })
     const { data, loading } = useQuery(ME)
     const friends = data?.Me?.friends || [{}]
 
@@ -23,7 +26,7 @@ function FriendsList() {
     return (
         <div>
             {friends.map((frnd, index) => (
-            <div key={index} onClick={handleChange}>
+            <div key={index} onClick={handleChange} className={ focus === frnd.username ? "btn btn-primary disabled m-2" : "btn btn-secondary m-2"} >
                 <h5 value={frnd.username}>{frnd.username}</h5>
             </div>
             ))}

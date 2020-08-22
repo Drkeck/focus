@@ -2,7 +2,6 @@
   "name": "focus",
   "version": "1.0.0",
   "description": "",
-<<<<<<< HEAD
   "main": "./server/server.js",
   "dependencies": {
     "ejs": "^3.1.5",
@@ -15,40 +14,23 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "concurrently": "^5.3.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon ./server/server.js"
-  
-=======
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i"
->>>>>>> feature/DirectMsg
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anishasnet/focus.git"
   },
-<<<<<<< HEAD
-  "author": "anishasnet",
-=======
   "keywords": [],
   "author": "",
->>>>>>> feature/DirectMsg
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/anishasnet/focus/issues"
   },
-<<<<<<< HEAD
   "homepage": "https://github.com/anishasnet/focus#readme"
-=======
-  "homepage": "https://github.com/anishasnet/focus#readme",
-  "devDependencies": {
-    "concurrently": "^5.3.0"
-  }
->>>>>>> feature/DirectMsg
 }

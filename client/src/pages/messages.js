@@ -30,22 +30,26 @@ function Messenger () {
 
     return (
         <div>
-            <FriendsList />
-            <Messages />
-            <form 
-                onSubmit={SubmitHandler} 
-                style={{bottom: 0, position: "fixed", left: 0, width: `100%`}}
-            >
-                <input
-                placeholder="Chat now!"
-                onChange={handleChange}
-                name="message"
-                autoComplete="off"
-                value={formState.message}
-                style={{width: '80%', marginRight: 10}}
-                ></input>
-                <button style={{ paddingLeft: 50, paddingRight: 50}}>Submit</button>    
-            </form> 
+            <div>
+                <FriendsList />
+            </div>
+            <div>
+                <Messages />
+                <form 
+                    onSubmit={SubmitHandler} 
+                    style={{bottom: 0, position: "fixed", left: 0, width: `100%`, height: "8%", flexDirection: "row", paddingLeft: 10, paddingRight: 10}}
+                >
+                    <input
+                    placeholder="Chat now!"
+                    onChange={handleChange}
+                    name="message"
+                    autoComplete="off"
+                    value={formState.message}
+                    className="mr-2 p-2"
+                    />
+                    <button className="ml-2">Submit</button>    
+                </form>
+            </div>
         </div>
     )
 }

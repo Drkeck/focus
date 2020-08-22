@@ -27,7 +27,7 @@ function JoinVideo(props) {
 
   const createRoom = async event => {
       event.preventDefault(); 
-        window.location.href= "localhost:3000/create-room"
+        window.location.href= "localhost:3001/create-room"
     console.log("helo")
       return false;
       event.preventDefault()
@@ -46,10 +46,10 @@ function JoinVideo(props) {
 //   };
 
   return (
-    <div className="join-video-container container my-1">
+    <div className="join-video-container my-1">
       
 
-      <h2>Join Video Call</h2>
+      <h2 className="my-3">Join Video Call</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="firstName">Room ID:</label>

@@ -14,11 +14,6 @@ const defaultState = {
 
 export const reducer = (state=defaultState , action) => {
     switch(action.type) {
-        case ADD_MESSAGES:
-            return{
-                ...state,
-                messages: [...action.messages]
-            }
         case UPDATE_MESSAGES:
             return{
                 ...state,
@@ -35,11 +30,6 @@ export const reducer = (state=defaultState , action) => {
                 focus: action.focus
             }
         case REMOVE_FOCUS:
-            return{
-                ...state,
-                focus: action.focus
-            }
-        case UPDATE_FOCUS:
             return{
                 ...state,
                 focus: action.focus

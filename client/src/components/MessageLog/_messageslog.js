@@ -43,8 +43,7 @@ function MessageLog() {
 
     // sending messages to the server.
     const sendMessage = ( message) => {
-        console.log(message);
-        // socketRef.current.send(message)
+        // send message to server.
         socketRef.current.emit("DM", {
             to : focus,
             message: message
