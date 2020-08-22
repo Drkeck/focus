@@ -18,12 +18,10 @@ const AppNavbar = () => {
       <Navbar bg='danger' className="top-nav" variant='dark' expand='lg'>
         <Link to="/">
           <Navbar.Brand className="title-nav">Focus</Navbar.Brand>
-        </Link>
-        <Container fluid>
-          
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
+        </Link>          
+          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+          <Navbar.Collapse id='responsive-navbar-nav'>
+            <Nav className='ml-auto' >
             
               {/* <Nav.Link as={Link} to='/'>
                 Placeholder
@@ -45,7 +43,6 @@ const AppNavbar = () => {
               
             </Nav>
           </Navbar.Collapse>
-        </Container>
       </Navbar>
       {/* set modal data up */}
       <Modal

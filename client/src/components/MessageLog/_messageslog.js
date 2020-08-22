@@ -35,7 +35,7 @@ function MessageLog() {
         return () => {
             socketRef.current.disconnect();
         }
-    }, [])
+    }, [dispatch])
 
     if(!loading) {
         socketRef.current.emit('sendNickname', user.username)

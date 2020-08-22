@@ -4,8 +4,6 @@ import './App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 
-import coverImg from './assets/videochat.jpg';
-
 //components
 
 import Messenger from './pages/messages';

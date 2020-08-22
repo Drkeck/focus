@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from '@apollo/react-hooks';
 const { v4: uuidV4 } = require('uuid')
 // import Auth from "../utils/auth";
 // import { ADD_USER } from "../utils/mutations";
 
 
 function JoinVideo(props) {
-//   const [formState, setFormState] = useState({ email: '', password: '' });
-//   const [addUser] = useMutation(ADD_USER);
-
-
   const uuid= uuidV4()
 
   const path="/create-room/" + uuid
@@ -25,17 +20,17 @@ function JoinVideo(props) {
     
   };
 
-  const createRoom = async event => {
-      event.preventDefault(); 
-        window.location.href= "localhost:3001/create-room"
-    console.log("helo")
-      return false;
-      event.preventDefault()
-      event.stopPropagation();
-      event.nativeEvent.stopImmediatePropagation();
-      console.log("helo")
-      window.location.href= "localhost:3000/create-room";
-  }
+  // const createRoom = async event => {
+  //     event.preventDefault(); 
+  //       window.location.href= "localhost:3001/create-room"
+  //   console.log("helo")
+  //     return false;
+  //     event.preventDefault()
+  //     event.stopPropagation();
+  //     event.nativeEvent.stopImmediatePropagation();
+  //     console.log("helo")
+  //     window.location.href= "localhost:3000/create-room";
+  // }
 
 //   const handleChange = event => {
 //     const { name, value } = event.target;
