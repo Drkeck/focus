@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 // queries for logged in users
 export const GET_ME = gql`
   {
-    me {
+  query  me {
       _id
       username
       email
