@@ -17,6 +17,7 @@ import Cover from './components/Cover'
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './utils/reducers';
+import ManageFriends from './pages/ManageFriends';
 
 const focus = createStore(reducer)
 
@@ -45,6 +46,7 @@ function App() {
               <Route exact path='/LoginForm' component={Login} />
               <Route exact path='/SignupForm' component={Signup} />
               <Route exact path='/messages' component={Messenger} />
+              <Route exact path='/managefriends' component={ManageFriends} />
               <Route path='/create-room' component={Room} />
               {/* Add link to create room and use other room.ejs. Generate random id-link */}
             </Switch>

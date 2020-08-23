@@ -102,10 +102,10 @@ io.on('connection', socket => {
 
   socket.on('disconnect', function() {
     console.log(socket.username + " has disconnected")
+    socket.disconnect()
   })
 
   socket.on('DM', function(data){
-    console.log(data, socket.username);
     const to = data.to, message = data.message;
     
     if (users.hasOwnProperty(to)) {
