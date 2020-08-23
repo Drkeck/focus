@@ -5,7 +5,7 @@ import { ADD_USER } from "../utils/mutations";
 
 function Signup() {
   const [formState, setFormState] = useState({ username: '', email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleFormSubmit = async event => {
     event.preventDefault();
@@ -63,6 +63,7 @@ function Signup() {
             onChange={handleChange}
           />
         </div>
+        {error ? <h5 className='text-center'>Username or Email already in use</h5> : null}
         <div className="flex-row flex-end">
           <button type="submit">
             Submit

@@ -24,7 +24,7 @@ This program uses:
 
 ## Deployed Application 
 Here is a link to the deployed application: 
-
+[click here](https://fo-cus.herokuapp.com/)
 ## Contributing
 
 The current contributors are: Alexander Keckley, Anisha Sinha, and Rawan Fatima.
