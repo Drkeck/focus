@@ -11,7 +11,9 @@
     "react-dom": "^16.13.1",
     "simple-peer": "^9.7.2",
     "socket.io": "^2.3.0",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.0",
+    "if-env": "^1.0.4"
+
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
@@ -22,7 +24,6 @@
     "start:prod": "cd server && npm start",
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
     "heroku-postbuild": "cd client && npm run build"
   },
   "repository": {
