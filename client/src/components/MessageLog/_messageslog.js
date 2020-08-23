@@ -44,6 +44,9 @@ function MessageLog() {
 
     // sending messages to the server.
     const sendMessage = (message) => {
+        if(focus === '') {
+            return
+        }
         // send message to server.
         socketRef.current.emit("DM", {
             to : focus,

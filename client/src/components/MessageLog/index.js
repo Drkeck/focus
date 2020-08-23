@@ -29,7 +29,7 @@ function Messages() {
                 message.to ? (
                 <div key={index} className="d-flex flex-column text-right mb-2" >
                     <h5 style={{ marginTop: 0, marginRight: 15}} className="text-break">{message.message}</h5>
-                    <p style={{ margin: 0, marginRight: 5 }} >You</p>
+                    <p style={{ margin: 0, marginRight: 5 }} >{message.username === "SERVER"? "SERVER" : "You" }</p>
                 </div>)
             :
                 (<div key={index} className="d-flex flex-column text-left mb-2">

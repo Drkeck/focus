@@ -3,11 +3,14 @@ import MessageLog from '../components/MessageLog/_messageslog'
 import Messages from '../components/MessageLog'
 import FriendsList from '../components/friendsList';
 import { Button } from 'react-bootstrap';
+import {useSelector} from 'react-redux'
+
 
 
 function Messenger () {
     const [formState, setFormState] = useState({ message: ''});
     const { sendMessage } = MessageLog();
+    const focus = useSelector(state => state.focus)
 
 
     const SubmitHandler = async event => {
@@ -36,6 +39,7 @@ function Messenger () {
             </div>
             <div>
                 <Messages />
+                {focus === '' ? <></> :
                 <form 
                     onSubmit={SubmitHandler} 
                     style={{bottom: 0, position: "fixed", width: `100%`, left: 0, height: "8%", flexDirection: "row", paddingLeft: 10, paddingRight: 25}}
@@ -48,9 +52,9 @@ function Messenger () {
                     value={formState.message}
                     className="mr-2 p-2"
                     />
-                    {/* <button className="ml-2">Submit</button> */}
-                    <Button size="sm">Submit</Button>
+                    <Button size="sm" type="submit">Submit</Button>
                 </form>
+                }
             </div>
         </div>
     )

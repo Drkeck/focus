@@ -121,6 +121,12 @@ io.on('connection', socket => {
         username : socket.username,
         message: message
       });
+    } else {
+      users[socket.username].emit('direct_message', {
+        to: to,
+        username : 'SERVER',
+        message: 'USER IS OFFLINE'
+      })
     }
   })
 })
