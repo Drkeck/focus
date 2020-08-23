@@ -19,7 +19,6 @@ function ManageFriends() {
         }
     })
 
-    console.log(friends)
     async function HandleRemove(e) {
         const userId = e.target.value;
         try {

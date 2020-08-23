@@ -40,7 +40,7 @@ function MessageLog() {
                 socketRef.current.disconnect();
             });
         }
-    }, [dispatch, loading])
+    }, [dispatch, loading, user])
 
     // sending messages to the server.
     const sendMessage = (message) => {

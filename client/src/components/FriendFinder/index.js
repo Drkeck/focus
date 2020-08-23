@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 function FriendFinder(username) {
     const[searchedUsers, setSearchedUsers] = useState({ search: '' });
     const [addFriend, {error}] = useMutation(ADD_FRIEND);
-    const { data, loading } = useQuery(USERS, {
+    const { data } = useQuery(USERS, {
         pollInterval: 500
     });
     // set up data
@@ -21,14 +21,13 @@ function FriendFinder(username) {
         })
     }
     // filter results by search
-    const searchResults = queryData.filter(result => {
+    const searchResults = queryData.filter(function(result) {
         if(result?.username === username.username) {
-            return
+            return '';
         }
 
         return result?.username?.toLowerCase().indexOf(searchedUsers.search.toLowerCase()) !== -1
     })
-    console.log(searchResults, username.username)
 
     async function handleAddFriend(event) {
         const userId = event.target.value
