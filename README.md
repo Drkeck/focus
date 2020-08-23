@@ -1,33 +1,36 @@
-# Focus
+![Imgur](https://i.imgur.com/MHNF5lW.png)
 
 ## Description
 
-This application enables users to connect with others through multi-person video chatting, and individual personal messaging. Users can create accounts and add friends. This program uses socket.io, WebRTC, Simple-Peers, GraphQL, and MongoDB. 
+This application enables users to connect with others through multi-person video chatting, and individual personal messaging.
+
+Users can create accounts, add / remove friends, and use video or text chat to keep in touch with their friends.
+
+This program uses: 
+* socket.io
+* WebRTC
+* Simple-Peers
+* GraphQL
+* MongoDB.
+* Redux
+* Json web token & jwt-Decode
+* express
 
 ## Table of Contents
 
 * [Deployed Application](#deployed-application)
-* [Usage](#usage)
-* [Preview](#preview)
-* [License](#license)
 * [Contributing](#contributing)
 * [Questions](#questions)
 
 ## Deployed Application 
 Here is a link to the deployed application: 
 
-## Preview
-Here is a preview of the site:
-
-## Usage
-
-## License
-
-There is no license.
-
 ## Contributing
 
 The current contributors are: Alexander Keckley, Anisha Sinha, and Rawan Fatima.
+
+all three of us are students learning every day by applying ourselves in coding projects, this project is the first time we used WebRTC and Socket.io.
+
 
 ## Questions
 
