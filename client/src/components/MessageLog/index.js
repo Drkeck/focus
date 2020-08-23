@@ -15,13 +15,13 @@ function Messages() {
     const personalMessages = messages.filter(messageFilter);
     
     return(
-        <div style={{ marginBottom: 25}}>
+        <div style={{ marginBottom: 80,}} data-spy="scroll">
             {/* loops through and creates a element for all the messages coming in */}
             { personalMessages.map((message, index) => (
                 message.to ? (
                 <div key={index} className="d-flex flex-column text-right" >
                     <h5 style={{ marginTop: 0, marginRight: 10}}>{message.message}</h5>
-                    <p style={{ marginRight: 5 }} >You</p>
+                    <p style={{ margin: 0, marginRight: 5 }} >You</p>
                 </div>)
             :
                 (<div key={index} className="d-flex flex-column text-left">

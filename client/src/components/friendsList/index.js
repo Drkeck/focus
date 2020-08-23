@@ -24,10 +24,11 @@ function FriendsList() {
         })
     }
     return (
-        <div>
+        <div className="shadow">
+            <h5 className="text-center">Friends:</h5>
             {loading ? <Spinner animation="border" role="status" ></Spinner> :  friends.map((frnd, index) => (
-            <div key={index} onClick={handleChange} className={ focus === frnd.username ? "btn btn-primary disabled m-2" : "btn btn-secondary m-2"} >
-                <h5 value={frnd.username}>{frnd.username}</h5>
+            <div key={index} onClick={handleChange} className={ focus === frnd.username ? "btn btn-primary btn-sm disabled m-1 mb-3" : "btn btn-secondary btn-sm m-1 mb-3"} >
+                <p value={frnd.username} style={{margin: 0, fontSize: "2vh"}}>{frnd.username}</p>
             </div>
             ))}
         </div>

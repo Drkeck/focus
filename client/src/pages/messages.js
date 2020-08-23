@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import MessageLog from '../components/MessageLog/_messageslog'
 import Messages from '../components/MessageLog'
 import FriendsList from '../components/friendsList';
+import { Button } from 'react-bootstrap';
 
 
 function Messenger () {
@@ -37,7 +38,7 @@ function Messenger () {
                 <Messages />
                 <form 
                     onSubmit={SubmitHandler} 
-                    style={{bottom: 0, position: "fixed", left: 0, width: `100%`, height: "8%", flexDirection: "row", paddingLeft: 10, paddingRight: 10}}
+                    style={{bottom: 0, position: "fixed", width: `100%`, left: 0, height: "8%", flexDirection: "row", paddingLeft: 10, paddingRight: 25}}
                 >
                     <input
                     placeholder="Chat now!"
@@ -47,7 +48,8 @@ function Messenger () {
                     value={formState.message}
                     className="mr-2 p-2"
                     />
-                    <button className="ml-2">Submit</button>    
+                    {/* <button className="ml-2">Submit</button> */}
+                    <Button size="sm">Submit</Button>
                 </form>
             </div>
         </div>
