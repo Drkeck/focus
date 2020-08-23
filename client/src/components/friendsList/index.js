@@ -24,7 +24,7 @@ function FriendsList() {
         })
     }
     return (
-        <div className="shadow">
+        <div className="shadow mb-4">
             <h5 className="text-center">Friends:</h5>
             {loading ? <Spinner animation="border" role="status" ></Spinner> :  friends.map((frnd, index) => (
             <div key={index} onClick={handleChange} className={ focus === frnd.username ? "btn btn-primary btn-sm disabled m-1 mb-3" : "btn btn-secondary btn-sm m-1 mb-3"} >
