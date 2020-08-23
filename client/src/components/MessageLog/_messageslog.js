@@ -8,11 +8,10 @@ import io from 'socket.io-client';
 function MessageLog() {
     // gets and stores messages from the server
     const {data, loading} = useQuery(ME);
-    const user = data?.Me || {};
+    const user = data?.Me?.username || {};
     const {focus, messages} = useSelector((state) => {
         return state
     });
-
     const dispatch = useDispatch();
 
     const socketRef = useRef();
@@ -22,6 +21,10 @@ function MessageLog() {
         socketRef.current = io(
             "http://localhost:3001"
         );
+        if (!loading) {
+            socketRef.current.emit('sendNickname', user);
+        }
+
 
         socketRef.current.on(
             "direct_message", function(data) {
@@ -33,16 +36,14 @@ function MessageLog() {
         );
 
         return () => {
-            socketRef.current.disconnect();
+            socketRef.current.on('disconnect', function(){
+                socketRef.current.disconnect();
+            });
         }
-    }, [dispatch])
-
-    if(!loading) {
-        socketRef.current.emit('sendNickname', user.username)
-    }
+    }, [dispatch, loading])
 
     // sending messages to the server.
-    const sendMessage = ( message) => {
+    const sendMessage = (message) => {
         // send message to server.
         socketRef.current.emit("DM", {
             to : focus,

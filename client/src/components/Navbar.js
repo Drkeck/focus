@@ -11,7 +11,6 @@ import Auth from '../utils/auth';
 const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal, showVideoModal, setShowVideoModal] = useState(false);
-
   return (
     <>
     <Container fluid>
@@ -33,14 +32,15 @@ const AppNavbar = () => {
                     Saved Searches
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link as={Link} to='/messages'>Chat</Nav.Link>
                 </>
               ) : (
+                <>
                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-                
+                <Nav.Link onClick={() => setShowModal(true)}>Chat</Nav.Link>
+                </>
               )}
               <Nav.Link onClick={() => setShowModal(true)}>Video Call</Nav.Link>
-              <Nav.Link onClick={() => setShowModal(true)}>Chat</Nav.Link>
-              
             </Nav>
           </Navbar.Collapse>
       </Navbar>
@@ -51,7 +51,7 @@ const AppNavbar = () => {
         onHide={() => setShowModal(false)}
         aria-labelledby='signup-modal'>
         {/* tab container to do either signup or login component */}
-        <Tab.Container defaultActiveKey='login'>
+        <Tab.Container defaultActiveKey={Auth.loggedIn()? 'video-call' : 'login'}>
           <Modal.Header closeButton>
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>

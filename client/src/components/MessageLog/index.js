@@ -7,14 +7,12 @@ function Messages() {
     })
 
     function messageFilter(message) {
-        if(message.username === focus|| message.to === focus) {
+        if(message.username === focus || message.to === focus) {
             return message
         }
     }
 
     const personalMessages = messages.filter(messageFilter);
-
-    console.log(personalMessages);
     
     return(
         <div style={{ marginBottom: 25}}>

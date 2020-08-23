@@ -60,6 +60,7 @@ io.on('connection', socket => {
   socket.on('sendNickname', function(username) {
     socket.username = username;
     users[username] = socket;
+    console.log(username);
   });
 
   socket.on('join-room', (roomId, userId) => {
@@ -99,6 +100,10 @@ io.on('connection', socket => {
     })
   });
 
+  socket.on('disconnect', function() {
+    console.log(socket.username + " has disconnected")
+  })
+
   socket.on('DM', function(data){
     console.log(data, socket.username);
     const to = data.to, message = data.message;
@@ -110,13 +115,13 @@ io.on('connection', socket => {
         // senders message
         message: message
       });
+
       users[socket.username].emit('direct_message', {
         to: to,
         username : socket.username,
         message: message
       });
     }
-
   })
 })
 

@@ -18,7 +18,6 @@ function FriendsList() {
     function handleChange(event) {
         event.persist();
         const {textContent} = event.target;
-        console.log(textContent)
         dispatch({
             type: FOCUSED_USER,
             focus: textContent
