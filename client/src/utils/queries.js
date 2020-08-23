@@ -15,10 +15,11 @@ export const ME = gql`
     }
 `;
 
-export const User = gql`
-    query user {
-        user {
+export const USERS = gql`
+    query users {
+        users {
             username
+            _id
         }
     }
 `;

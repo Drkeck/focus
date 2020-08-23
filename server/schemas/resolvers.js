@@ -44,6 +44,18 @@ const resolvers = {
             }
 
             throw new AuthenincationError('You need to be logged in');
+        },
+        removeFriend: async (parent, {userId}, context) => {
+            if (context.user) {
+                const updateUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { friends: userId } },
+                    { new: true }
+                ).populate('friends')
+                return updateUser;
+            }
+
+            throw new AuthenincationError('You need to be logged in');
         }
     }
 }

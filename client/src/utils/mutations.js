@@ -36,3 +36,16 @@ mutation addFriend($userId: ID!) {
     }
   }
 `;
+
+export const REMOVE_FRIEND = gql`
+mutation removeFriend($userId: ID!) {
+    removeFriend(userId: $userId) {
+      username
+      _id
+      friends {
+        username
+        _id
+      }
+    }
+  }
+`;
