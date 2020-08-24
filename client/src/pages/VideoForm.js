@@ -7,15 +7,18 @@ const { v4: uuidV4 } = require('uuid')
 
 
 function JoinVideo(props) {
-//   const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [inputState, setInputState] = useState('');
 //   const [addUser] = useMutation(ADD_USER);
 
 
   const uuid= uuidV4()
 
-  const path="/create-room/" + uuid
+  const path="/room/" + uuid
+  let idPath="/room/" + inputState
   const handleFormSubmit = async event => {
-    // event.preventDefault();
+    event.preventDefault();
+    window.location.href="localhost:3000/room/a410c290-e102-4c28-b2bc-23f6c131261b"
     // const mutationResponse = await addUser({
     //   variables: {
     //     email: formState.email, password: formState.password,
@@ -25,10 +28,10 @@ function JoinVideo(props) {
     
   };
 
-  const createRoom = async event => {
+  const join = async event => {
       event.preventDefault(); 
-        window.location.href= "localhost:3000/create-room"
-    console.log("helo")
+      const id=document.getElementById("room-id").value
+      window.location.href="localhost:3000/room/" + id
       return false;
       event.preventDefault()
       event.stopPropagation();
@@ -37,13 +40,14 @@ function JoinVideo(props) {
       window.location.href= "localhost:3000/create-room";
   }
 
-//   const handleChange = event => {
-//     const { name, value } = event.target;
-//     setFormState({
-//       ...formState,
-//       [name]: value
-//     });
-//   };
+  const handleChange = event => {
+    const { name, value } = event.target;
+    // setFormState({
+    //   ...formState,
+    //   [name]: value
+    // });
+    setInputState(value)
+  };
 
   return (
     <div className="join-video-container container my-1">
@@ -58,7 +62,7 @@ function JoinVideo(props) {
             name="roomid"
             type="roomid"
             id="room-id"
-            // onChange={handleChange}
+            onChange={handleChange}
           />
         </div>
         {/* <div className="flex-row space-between my-2">
@@ -92,10 +96,12 @@ function JoinVideo(props) {
           />
         </div> */}
         <div className="flex-row flex-end">
-          <button type="submit">
+          {/* <button type="submit">
             Submit
-          </button>
+          </button> */}
+          <Link to={idPath}>Submit</Link>
 
+          
           
         </div>
       </form>

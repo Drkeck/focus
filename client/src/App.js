@@ -43,7 +43,7 @@ function App() {
             <Route exact path='/LoginForm' component={Login} />
             <Route exact path='/SignupForm' component={Signup} />
           <Route exact path='/messages' component={Messenger} />
-          <Route path='/create-room' component={Room} />
+          <Route path='/room/:roomID' component={Room} />
           {/* Add link to create room and use other room.ejs. Generate random id-link */}
         
           </Switch>
